@@ -44,6 +44,7 @@ class MNISTModel(Module):
         self.dropout2 = Dropout(p=dropout_rate, inplace=False)
         self.linear3 = Linear(in_features=196, out_features=output_size, bias=True)
         self.softmax3 = Softmax(dim=1)
+        self.summary()
 
         # self.layers = []
         # layer_dict = self.generate_layer_dict(size_list, input_size, output_size, dropout_rate)
@@ -96,6 +97,15 @@ class MNISTModel(Module):
         accuracy = self.accuracy(outputs, labels)
         self.train()
         return loss, accuracy
+
+    def evaluate_test(self, test_data=None):
+        if test_data is not None:
+            test_data_loader = DataLoader(dataset=test_data,
+                                          shuffle=False,
+                                          batch_size=len(test_data))
+            return self.evaluate(data_loader=test_data_loader)
+        else:
+            ValueError('test_data must be given.')
 
     def accuracy(self, outputs, labels):
         return sum([float(outputs[i][labels[i]] == max(outputs[i])) for i in range(len(labels))]) / len(labels)

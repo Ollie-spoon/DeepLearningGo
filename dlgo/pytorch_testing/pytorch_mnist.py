@@ -1,4 +1,9 @@
 """
+NOTE: This version of PyTorch mnist uses the general formatting and structure of dlgo/keras_testing/keras_mnist.py
+    rather than the 'PyTorch way of doing things'. This is also an amalgamation of different scraps of what I have
+    managed to rip from various places on the internet combined with my own approach to making it work.
+    It is therefore not following industry best practices and is likely highly inefficient.
+
 Important differences to note between keras and pytorch.
     Generators become DataLoaders
     No Compiling step
@@ -9,8 +14,13 @@ Important differences to note between keras and pytorch.
         Don't use until in early stages.
     In this example at least Generators/DataLoaders seem to be a mandatory requirement. (not a bad thing)
 
+Main steps:
+1. Import data/create data_loaders.
+2. Create a model (I hate the way that this is unautomisable)
+3.
 
 TODO: Figure out how to flatten the train_dataset and test_dataset upon import.
+TODO: Combine the test_data_loader into the MNISTModel in mnist_model.py
 
 """
 
@@ -23,8 +33,6 @@ from torch.utils.data import DataLoader
 from dlgo.pytorch_testing.mnist_model import MNISTModel
 
 
-print('----imports complete')
-
 # <1>
 
 train_dataset = MNIST(root='./data',
@@ -34,16 +42,10 @@ train_dataset = MNIST(root='./data',
 test_dataset = MNIST(root='./data',
                      train=False,
                      transform=ToTensor())
-test_data_loader = DataLoader(dataset=test_dataset, shuffle=False)
 
 # <2>
 
-
-# def __repr__(self):
-#     return str(self.layers)
 model = MNISTModel()
-
-model.summary()
 
 # <3>
 
@@ -57,6 +59,6 @@ model.fit(train_dataset,
           batch_size=120,
           epochs=2)
 
-score = model.evaluate(data_loader=test_data_loader)
+score = model.evaluate_test(test_data=test_dataset)
 print('Test loss:', score[0].item())
-print(f'Test accuracy: {score[1]:f5}')
+print(f'Test accuracy: ', score[1])
