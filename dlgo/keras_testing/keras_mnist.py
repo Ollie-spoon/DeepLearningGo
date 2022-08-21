@@ -106,8 +106,8 @@ With a low training error but a large validation error, you likely do not have
 AWS can be used to perform training, this is all well documented in Appendix D
         p. 326(355)
 When comparing runs, don’t stop a run that looks worse than a previous run too
-        early. Some learning processes are slower than others—and might eventually
-        catch up or even outperform other models.
+        early. Some learning processes are slower than others—and might
+        eventually catch up or even outperform other models.
 """
 
 from tensorflow import keras
