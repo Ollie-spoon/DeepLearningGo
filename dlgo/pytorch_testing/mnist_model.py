@@ -125,6 +125,7 @@ class MNISTModel(Module):
         train_data_loader = DataLoader(dataset=train_dataset,
                                        batch_size=batch_size,
                                        shuffle=True)
+        print("Epoch, Batches")
         for epoch in range(epochs):
             running_loss = 0.0
 
@@ -139,8 +140,8 @@ class MNISTModel(Module):
                     _, accuracy = self.evaluate(inputs_labels=(inputs, labels))
                     print(f'[{epoch + 1}, {i + 1:5d}] loss: {running_loss / print_interval:.3f} Accuracy: {accuracy:.3f}')
                     running_loss = 0.0
-
-            print('Finished Training')
+            print("\n")
+        print('Finished Training')
 
     def summary(self):
         print(self)

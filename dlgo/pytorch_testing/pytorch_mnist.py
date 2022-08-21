@@ -57,7 +57,7 @@ model.compile(loss=loss, optimiser=optimiser)
 # <4>
 model.fit(train_dataset,
           batch_size=120,
-          epochs=2)
+          epochs=10)
 
 score = model.evaluate_test(test_data=test_dataset)
 print('Test loss:', score[0].item())
