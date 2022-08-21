@@ -1,0 +1,9 @@
+.idea/
+.vscode/
+checkpoints/
+data/
+dlgo/nn_theirs/
+dlgo/pytorch_testing/data/
+generate_mcts_games.py
+generated_games/
+kgs_index.html
