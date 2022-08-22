@@ -3,7 +3,9 @@
 checkpoints/
 data/
 dlgo/nn_theirs/
+dlgo/__pycache__/
 dlgo/pytorch_testing/data/
+__pycache__/
 generate_mcts_games.py
 generated_games/
 kgs_index.html
