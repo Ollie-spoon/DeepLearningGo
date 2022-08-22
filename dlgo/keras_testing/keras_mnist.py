@@ -7,6 +7,18 @@ Using Keras is very simple and takes just 4 steps
 4. Fitting the model to the data
 
 Points to note:
+Imports:
+There is a distinction between keras and tf.keras. In this file, to avoid
+        this issue, from tensorflow, import keras has been called so that
+        every from keras from there on out calls tensorflow.keras.
+
+
+Saving:
+Use model.save("model_path.h5") to manually save as an HDF5 file. May
+        require the h5py module to be installed if not already.
+Alternatively from keras.callbacks import ModelCheckpoint and files will
+        automatically be stored in the "checkpoints" folder.
+
 
 Activation functions:
 SELU typically works better than sigmoid/softmax as an activation function
@@ -14,6 +26,7 @@ SELU typically works better than sigmoid/softmax as an activation function
 The final layer of the network should usually have a softmax activation 
         as this places the final value between 0-1 and 'normalises' the 
         output values. - Sum(output) = 1.0
+
 
 Loss functions:
 When compiling, Mean_Squared_Error (MSE) works very well for regression 
@@ -23,6 +36,7 @@ For binary output examples, categorical_crossentropy (CCE) works much better
         as the loss is only measured on the single value that should have 
         been selected.
 More details for this are on p. 139, section 6.5.2 - Makes a lot of sense
+
 
 Optimizer:
 Decay - (of learning rate) - Both decay and momentum on p.171(200)
@@ -61,6 +75,7 @@ Pooling. Like a convolutional layer but instead of applying a fliter it takes
         Allows the size of a section of data to be reduced massively while 
         not sacraficing too much quality.
 
+
 Tuning Architectures and Hyperparameters guide:
 When thinking about convolution consider what changes will have to an image
         being convolved.
@@ -95,6 +110,7 @@ One extra super important thing to consider is that random numbers are often
         very good but it's worth considering to give yourself a head start in
         training)
         -- https://keras.io/api/layers/initializers/
+
 
 General guidelines/Helpful pointers:
 Validation loss over time is very important. When using checkpointing use the

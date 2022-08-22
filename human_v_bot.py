@@ -10,8 +10,8 @@ def main():
     board_size = 5
     game = goboard.GameState.new_game(board_size)
     ## agent = RandomAgent()
-    player_colour = gotypes.Player.white
-    agent = MCTSAgent(10000, 1.7)
+    player_colour = gotypes.Player.black
+    agent = MCTSAgent(5000, 1.7)
 
     while not game.is_over():
         print(chr(27) + "[2J")
