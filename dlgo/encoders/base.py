@@ -1,6 +1,12 @@
 import importlib
 
 
+__all__ = [
+    'Encoder',
+    'get_encoder_by_name'
+]
+
+
 class Encoder:
     """
     The encoder base class has the following methods:
@@ -11,21 +17,22 @@ class Encoder:
         num_points - 
         shape - shape of the encoded board structure
     """
+
     def name(self):
         raise NotImplementedError()
 
     def encode(self, game_state):
         raise NotImplementedError()
-    
+
     def encode_point(self, point):
         raise NotImplementedError()
-    
+
     def decode_point_index(self, index):
         raise NotImplementedError()
-    
+
     def num_points(self):
         raise NotImplementedError()
-    
+
     def shape(self):
         raise NotImplementedError()
 
@@ -36,8 +43,9 @@ get_encoder_by_name
     use the name of the encoder to create a constructor of size board_size
     each encoder module will have a 'create' function to return an instance of it
 """
+
+
 def get_encoder_by_name(name, board_size):
-    
     if isinstance(board_size, int):
         board_size = (board_size, board_size)
 

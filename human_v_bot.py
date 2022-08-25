@@ -7,11 +7,11 @@ from six.moves import input
 
 
 def main():
-    board_size = 5
+    board_size = 9
     game = goboard.GameState.new_game(board_size)
     ## agent = RandomAgent()
     player_colour = gotypes.Player.black
-    agent = MCTSAgent(5000, 1.7)
+    agent = MCTSAgent(10000, 1.7)
 
     while not game.is_over():
         print(chr(27) + "[2J")
