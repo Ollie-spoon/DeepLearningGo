@@ -2,7 +2,7 @@ import tensorflow.keras as keras
 from tensorflow.keras.datasets import mnist
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Input, GlobalAveragePooling1D, Dropout
-from transformer import TransformerBlock, TokenAndPositionEmbedding
+from dlgo.keras_testing.transformer import TransformerBlock, TokenAndPositionEmbedding
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
@@ -21,19 +21,17 @@ embedding_layer = TokenAndPositionEmbedding(200, 2000, 32)
 transformer_block = TransformerBlock(32, 2, 32)
 
 model = Sequential()
+
 model.add(embedding_layer(inputs))
 model.add(transformer_block)
 model.add(GlobalAveragePooling1D())
+
 model.add(Dropout(0.1))
 model.add(Dense(96, activation='relu'))
 model.add(Dropout(0.1))
-model.add(Dense(10, activation='sigmoid'))
+model.add(Dense(10, activation='softmax'))
 
-# model.add(Dense(392, activation='selu', input_shape=(784,)))
-# model.add(Dense(196, activation='selu'))
-# model.add(Dense(10, activation='sigmoid'))
-# model.summary()
-
+model.summary()
 
 
 model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])

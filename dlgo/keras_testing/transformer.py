@@ -1,11 +1,13 @@
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
+from dlgo.keras_testing.MultiHeadAttention import MultiHeadAttention
+
 
 class TransformerBlock(layers.Layer):
     def __init__(self, embed_dim, num_heads, ff_dim, rate=0.1, activation='relu'):
         super(TransformerBlock, self).__init__()
-        self.att = layers.MultiHeadAttention(num_heads=num_heads, key_dim=embed_dim)
+        self.att = MultiHeadAttention(num_heads=num_heads, key_dim=embed_dim)
         self.ffn = keras.Sequential(
             [layers.Dense(ff_dim, activation=activation), layers.Dense(embed_dim),]
         )
@@ -21,6 +23,7 @@ class TransformerBlock(layers.Layer):
         ffn_output = self.ffn(out1)
         ffn_output = self.dropout2(ffn_output, training=training)
         return self.layernorm2(out1 + ffn_output)
+
 
 class TokenAndPositionEmbedding(layers.Layer):
     def __init__(self, maxlen, vocab_size, embed_dim):

@@ -21,8 +21,11 @@ Alternatively from keras.callbacks import ModelCheckpoint and files will
 
 
 Activation functions:
-SELU typically works better than sigmoid/softmax as an activation function
-        SELU: alpha*(e^x - 1) below 0
+ReLU typically works better than sigmoid/softmax as an activation function
+        ReLU: x = x if x above 0 else 0
+GeLU or SiLU/Swish are both used in state of the art NLP models and
+        elswhere and eliminate a number of issues that ReLU and it's
+        variants exhibit.
 The final layer of the network should usually have a softmax activation 
         as this places the final value between 0-1 and 'normalises' the 
         output values. - Sum(output) = 1.0
@@ -148,9 +151,9 @@ y_test = keras.utils.to_categorical(y_test, 10)
 # <2>
 
 model = Sequential()
-model.add(Dense(392, activation='selu', input_shape=(784,)))
+model.add(Dense(392, activation='gelu', input_shape=(784,)))
 model.add(Dropout(0.1))
-model.add(Dense(196, activation='selu'))
+model.add(Dense(196, activation='gelu'))
 model.add(Dropout(0.1))
 model.add(Dense(10, activation='softmax'))
 model.summary()
