@@ -62,7 +62,9 @@ Adagrad. Doesn't have a global learning rate, but instead has a different
         you have a large dataset with lots of different niche behaviours
         that occur infrequently.
 Adadelta. This works similarly to Adagrad except a 'momentum' style functions
-        is used to decrease the learning rate per perameter over time.
+        is used to decrease the learning rate per perameter over time. This
+        is typically more desirable than the base Adagrad which has too
+        aggressive a learning rate.
 
 
 Layers:
