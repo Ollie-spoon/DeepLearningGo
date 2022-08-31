@@ -36,6 +36,14 @@ Transformers work on the idea of relational attention. If you look at an
         Self-Attention refers to that fact that in a lot of use cases,
         queries, keys, and values all come from the same source.
 
+        Traditional attention can be used for example comparing two sentences
+
+                "I'm not going to the library,"
+                            and
+                "Je ne vais pas à la bibliothèque."
+
+        in this example not has a strong attention with both "ne" and "pas".
+
 Data Preprocessing:
         For an image, it is typical to split the image up into a number of
         discrete sections as there is a limit to the computational power
