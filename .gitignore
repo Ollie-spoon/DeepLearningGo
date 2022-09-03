@@ -9,3 +9,4 @@ __pycache__/
 generate_mcts_games.py
 generated_games/
 kgs_index.html
+examples/save_test.py
